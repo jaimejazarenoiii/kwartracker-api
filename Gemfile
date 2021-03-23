@@ -32,6 +32,10 @@ gem 'graphql'
 gem 'jwt'
 gem 'devise'
 gem "interactor", "~> 3.0"
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
+gem 'sidekiq-unique-jobs'
+gem "redis"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
