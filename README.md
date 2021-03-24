@@ -38,7 +38,7 @@ $ vim .env
 $ docker-compose up --build
 ```
 * Open a new tab for the terminal
-* List the containers and get the id for the Postgres container(because we cant see the list of the containers if it's not running:
+* List the containers and get the id for the Postgres container(because we cant see the list of the containers if it's not running):
 ```
 $ docker container ls
 ```
@@ -68,7 +68,7 @@ $ docker-compose up --build
 * Install docker desktop or cli (up to you)
   - [Docker Desktop for
       Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac/)
-* Practice VIM on cli:
+* Practice VIM in cli:
 ```
 $ vimtutor
 ```
