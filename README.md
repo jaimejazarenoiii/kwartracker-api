@@ -5,6 +5,7 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Tips](#tips)
+* [References](#references)
 
 ## General info
 A Dockerize Rails API app for the mobile app Kwartracker. This is using GraphQL instead of the traditional REST API.
@@ -71,3 +72,5 @@ $ docker-compose up --build
 ```
 $ vimtutor
 ```
+## References
+* [Pull request template](https://gist.github.com/jaimejazarenoiii/63364c6e6201b39b8d2c3a98d7028930)
