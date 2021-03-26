@@ -31,5 +31,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    volumes:
+      - .:/kwartracker-api
     environment:
       REDIS_URL: "redis://redis:6379/12"
