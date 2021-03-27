@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -24,6 +26,12 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable
+  enum gender: %i[male female]
+  validates :email, presence: true, uniqueness: true
+  validates :first_name, :middle_name, :last_name, length: { maximum: 20 }
+  validates :age, inclusion: 13..100
+  validates :password, :password_confirmation, presence: true, length: { in: 8..15 }
+  validates :password, confirmation: true
+  validates_format_of :email, with: Devise.email_regexp
 end
