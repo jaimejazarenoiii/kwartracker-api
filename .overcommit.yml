@@ -134,7 +134,6 @@ PostCheckout:
   BundleInstall:
     enabled: true
     description: 'Install Bundler dependencies'
-    requires_files: true
     required_executable: 'bundle'
     install_command: 'gem install bundler'
     flags: ['install']
@@ -152,7 +151,6 @@ PostCommit:
   BundleInstall:
     enabled: true
     description: 'Install Bundler dependencies'
-    requires_files: true
     required_executable: 'bundle'
     install_command: 'gem install bundler'
     flags: ['install']
@@ -169,7 +167,6 @@ PostMerge:
   BundleInstall:
     enabled: true
     description: 'Install Bundler dependencies'
-    requires_files: true
     required_executable: 'bundle'
     install_command: 'gem install bundler'
     flags: ['install']
@@ -186,7 +183,6 @@ PostRewrite:
   BundleInstall:
     enabled: true
     description: 'Install Bundler dependencies'
-    requires_files: true
     required_executable: 'bundle'
     install_command: 'gem install bundler'
     flags: ['install']
