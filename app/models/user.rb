@@ -31,4 +31,5 @@ class User < ApplicationRecord
   validates :age, inclusion: 13..100
   validates :password, :password_confirmation, presence: true, length: { in: 8..15 }
   validates :password, confirmation: true
+  validates_format_of :email, :with => Devise::email_regexp
 end
