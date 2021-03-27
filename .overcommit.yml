@@ -204,6 +204,7 @@ PrePush:
   Minitest:
     enabled: true
     description: 'Run Minitest test suite'
-    required_executable: 'docker-compose run web rails test'
+    required_executable: 'hunspell'
+    command: ['docker-compose', 'run', 'web', 'rails', 'test']
     include: 'test/**/*_test.rb'
 
