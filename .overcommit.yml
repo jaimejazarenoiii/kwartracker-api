@@ -195,16 +195,3 @@ PostRewrite:
       - 'Gemfile.lock'
       - '*.gemspec'
 
-PrePush:
-  ALL:
-    requires_files: false
-    required: false
-    quiet: false
-
-  Minitest:
-    enabled: true
-    description: 'Run Minitest test suite'
-    required_executable: 'hunspell'
-    command: ['docker-compose', 'run', 'web', 'rails', 'test']
-    include: 'test/**/*_test.rb'
-
