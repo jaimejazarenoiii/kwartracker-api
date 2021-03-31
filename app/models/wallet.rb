@@ -12,6 +12,6 @@
 #  updated_at  :datetime         not null
 #
 class Wallet < ApplicationRecord
-	enum gender: %i[type1 type2]
+	enum type: %i[type1 type2]
 	validates :title, presence: true, uniqueness: true
 end
