@@ -1,31 +1,34 @@
-module AuthenticableUser
-    private
+# AuthenticableUser
+# frozen_string_literal: true
 
-    def current_user
-        @current_user ||= User.find_by(id: payload_data["sub"]) if token && decoded_token
-      end
-    
-      def token
-        @token ||= request.headers["Authorization"].to_s.split(" ").last || cookies["Authorization"].to_s.split(" ").last
-      end
-    
-      def decoded_token
-        @decoded_token ||= JWT.decode(token, hmac_secret, true, decode_options)
-      rescue JWT::DecodeError
-        nil
-      end
-    
-      def payload_data
-        @payload_data ||= decoded_token.reduce({}, :merge)
-      end
-    
-      def hmac_secret
-        ENV.fetch("HMAC_SECRET")
-      end
-    
-      def decode_options
-        {
-          algorithm: ENV.fetch("HMAC_ALGORITHM")
-        }
-      end
+module AuthenticableUser
+  private
+
+  def current_user
+    @current_user ||= User.find_by(id: payload_data['sub']) if token && decoded_token
+  end
+
+  def token
+    @token ||= request.headers['Authorization'].to_s.split(' ').last || cookies['Authorization'].to_s.split(' ').last
+  end
+
+  def decoded_token
+    @decoded_token ||= JWT.decode(token, hmac_secret, true, decode_options)
+  rescue JWT::DecodeError
+    nil
+  end
+
+  def payload_data
+    @payload_data ||= decoded_token.reduce({}, :merge)
+  end
+
+  def hmac_secret
+    ENV.fetch('HMAC_SECRET')
+  end
+
+  def decode_options
+    {
+      algorithm: ENV.fetch('HMAC_ALGORITHM')
+    }
+  end
 end
