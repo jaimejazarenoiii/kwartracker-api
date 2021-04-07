@@ -37,7 +37,7 @@ class GenerateToken
   end
 
   def expiration_time
-    Time.now.to_i + 24 * 3600
+    Time.now.to_i + 3 * 30 * 24 * 3600
   end
 
   def issued_at
