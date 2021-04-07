@@ -12,9 +12,6 @@ module Mutations
 
     type ::Types::Payloads::AuthenticatedUserType
 
-    def resolve(**params)
-      result = ::SignUpWithEmail.call(params)
-      result.success? ? result : execution_error(message: result.error)
-    end
+    def resolve(**params); end
   end
 end
