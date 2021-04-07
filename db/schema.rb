@@ -12,15 +12,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_331_060_702) do
+ActiveRecord::Schema.define(version: 20_210_407_072_943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
   create_table 'imageables', force: :cascade do |t|
-    t.string 'image'
+    t.string 'picture'
     t.integer 'type'
+    t.string 'imageable_type', null: false
+    t.bigint 'imageable_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.index %w[imageable_type imageable_id], name: 'index_imageables_on_imageable'
   end
 
   create_table 'transactions', force: :cascade do |t|
