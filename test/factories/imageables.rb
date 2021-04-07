@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: imageables
@@ -10,7 +12,7 @@
 #
 FactoryBot.define do
   factory :imageable do
-    image { "MyString" }
+    image { 'MyString' }
     type { 1 }
   end
 end

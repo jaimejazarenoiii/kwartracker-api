@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: imageables
@@ -9,6 +11,6 @@
 #  updated_at :datetime         not null
 #
 class Imageable < ApplicationRecord
-	validates :image, presence: true, uniqueness: true
-	enum type: %i[type1 type2 type3]
+  validates :image, presence: true, uniqueness: true
+  enum type: %i[type1 type2 type3]
 end
