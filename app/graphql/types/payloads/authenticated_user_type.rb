@@ -6,7 +6,7 @@ module Types
       description 'Payload for authenticated user'
 
       field :token, String, null: false
-      field :user, Types::UserType, null: false
+      field :user, Types::Payloads::UserType, null: false
     end
   end
 end
