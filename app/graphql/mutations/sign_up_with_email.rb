@@ -7,11 +7,14 @@ module Mutations
 
     argument :email, String, required: true
     argument :password, String, required: true
-    argument :password_confrimation, String, required: true
+    argument :password_confirmation, String, required: true
     argument :profile, Types::Inputs::ProfileInput, required: true
 
     type ::Types::Payloads::AuthenticatedUserType
 
-    def resolve(**params); end
+    def resolve(**params)
+      result = ::Organizers::SignUpWithEmail.call(params)
+      result.success? ? result : execution_error(message: result.error)
+    end
   end
 end
