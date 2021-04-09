@@ -1,17 +1,20 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: wallets
 #
 #  id          :bigint           not null, primary key
-#  currency    :integer
+#  currency    :integer          not null
 #  target_date :datetime
-#  title       :string
+#  title       :string           not null
 #  total       :float
-#  type        :string
+#  type        :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 class Wallet < ApplicationRecord
-	enum type: %i[type1 type2]
-	validates :title, presence: true, uniqueness: true
+  enum currency: %i[php usd]
+  validates :title, presence: true, uniqueness: true
+  validates :type, :currency, presence: true
 end

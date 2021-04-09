@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: wallets
 #
 #  id          :bigint           not null, primary key
-#  currency    :integer
+#  currency    :integer          not null
 #  target_date :datetime
-#  title       :string
+#  title       :string           not null
 #  total       :float
-#  type        :string
+#  type        :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-require "test_helper"
+require 'test_helper'
 
 class WalletTest < ActiveSupport::TestCase
   # test "the truth" do
