@@ -2,22 +2,22 @@
 
 # == Schema Information
 #
-# Table name: imageables
+# Table name: images
 #
 #  id             :bigint           not null, primary key
 #  imageable_type :string           not null
-#  picture        :string
-#  type           :integer
+#  type           :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  imageable_id   :bigint           not null
 #
 # Indexes
 #
-#  index_imageables_on_imageable  (imageable_type,imageable_id)
+#  index_images_on_imageable  (imageable_type,imageable_id)
 #
-class Imageable < ApplicationRecord
-  validates :image, presence: true, uniqueness: true
-  enum type: %i[type1 type2 type3]
-  belongs_to :imageable, polymorphic: true
+FactoryBot.define do
+  factory :image do
+    type { 1 }
+    imageable { nil }
+  end
 end

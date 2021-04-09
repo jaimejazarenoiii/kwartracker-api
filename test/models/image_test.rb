@@ -2,24 +2,23 @@
 
 # == Schema Information
 #
-# Table name: imageables
+# Table name: images
 #
 #  id             :bigint           not null, primary key
 #  imageable_type :string           not null
-#  picture        :string
-#  type           :integer
+#  type           :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  imageable_id   :bigint           not null
 #
 # Indexes
 #
-#  index_imageables_on_imageable  (imageable_type,imageable_id)
+#  index_images_on_imageable  (imageable_type,imageable_id)
 #
-FactoryBot.define do
-  factory :imageable do
-    picture { 'MyString' }
-    type { 1 }
-    imageable { nil }
-  end
+require 'test_helper'
+
+class ImageTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end
