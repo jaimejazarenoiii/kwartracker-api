@@ -9,7 +9,7 @@ class CreateTransactions < ActiveRecord::Migration[6.1]
       t.integer :wallet_id, null: false
       t.datetime :datetime, null: false
       t.boolean :recurring, null: true
-      t.string :frequency, null: true
+      t.integer :frequency, null: true
       t.string :frequence_date, null: true
       t.string :with, null: true
       t.integer :photo_id, null: true

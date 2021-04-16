@@ -11,10 +11,26 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 20_210_323_160_745) do
+# rubocop:disable Metrics/BlockLength
+ActiveRecord::Schema.define(version: 20_210_414_124_733) do
+  # rubocop:enable Metrics/BlockLength
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+
+  create_table 'transactions', force: :cascade do |t|
+    t.string 'title', null: false
+    t.integer 'category_id', null: false
+    t.float 'amount', null: false
+    t.integer 'wallet_id', null: false
+    t.datetime 'datetime', null: false
+    t.boolean 'recurring'
+    t.integer 'frequency'
+    t.string 'frequence_date'
+    t.string 'with'
+    t.integer 'photo_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
 
   create_table 'users', force: :cascade do |t|
     t.string 'first_name', null: false
