@@ -6,26 +6,6 @@ name: CI
 on: push
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-
   docker_push:
     runs-on: ubuntu-latest
     if:
@@ -34,6 +14,14 @@ jobs:
         refs/heads/development
       ', github.ref)
     steps:
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: kwartracker-api-repo
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: 'Building container...'
+          SLACK_TITLE: 'Docker Push :whale:'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up QEMU
@@ -51,10 +39,27 @@ jobs:
           context: .
           push: true
           tags: jaimejazarenoiii/kwartracker-api:latest 
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: kwartracker-api-repo
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: 'Container pushed'
+          SLACK_TITLE: 'Docker Build and Push :whale:'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
   run_rubocop:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: kwartracker-api-repo
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: 'Running linter...'
+          SLACK_TITLE: 'RuboCop :cop:'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up QEMU
@@ -76,9 +81,16 @@ jobs:
       - name: Run rubocop
         run: |
           docker-compose run web rubocop
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: kwartracker-api-repo
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: 'Done running linter.'
+          SLACK_TITLE: 'RuboCop :cop:'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-  slack_notification:
-    name: Slack Notification
+  run_tests:
     runs-on: ubuntu-latest
     needs: run_rubocop
     steps:
@@ -88,7 +100,35 @@ jobs:
         env:
           SLACK_CHANNEL: kwartracker-api-repo
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: 'Post GH Action :rocket:'
-          SLACK_TITLE: 'Post GH Action :rocket:'
-          SLACK_USERNAME: GABot
+          SLACK_MESSAGE: 'Testing...'
+          SLACK_TITLE: 'MiniTests :check:'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Create Dotenv File
+        uses: actually-colab/github-action-create-env-file@v2.3
+        with:
+          envkey_DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          envkey_DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          envkey_HMAC_SECRET: ${{ secrets.HMAC_SECRET }}
+          envkey_HMAC_ALGORITHM: ${{ secrets.HMAC_ALGORITHM }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: false
+      - name: Run tests
+        run: |
+          docker-compose run web rails test
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: kwartracker-api-repo
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: 'Done testing.'
+          SLACK_TITLE: 'MiniTests :check:'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
