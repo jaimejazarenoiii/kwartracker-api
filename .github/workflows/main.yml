@@ -18,7 +18,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: kwartracker-api-repo
-          SLACK_COLOR: #FFD400
+          SLACK_COLOR: #ffd400
           SLACK_MESSAGE: 'Building container...'
           SLACK_TITLE: 'Docker Push :whale:'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
@@ -56,7 +56,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: kwartracker-api-repo
-          SLACK_COLOR: #FFD400
+          SLACK_COLOR: #ffd400
           SLACK_MESSAGE: 'Running linter...'
           SLACK_TITLE: 'RuboCop :cop:'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
@@ -99,7 +99,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: kwartracker-api-repo
-          SLACK_COLOR: #FFD400
+          SLACK_COLOR: #ffd400
           SLACK_MESSAGE: 'Testing...'
           SLACK_TITLE: 'MiniTests :check:'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
