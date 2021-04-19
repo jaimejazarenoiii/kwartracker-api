@@ -123,6 +123,7 @@ jobs:
           push: false
       - name: Run tests
         run: |
+          docker-compose run web rails db:setup db:migrate
           docker-compose run web rails test
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
