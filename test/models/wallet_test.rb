@@ -16,7 +16,22 @@
 require 'test_helper'
 
 class WalletTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @wallet = build(:wallet)
+  end
+
+  test 'invalid empty title' do
+    assert_not @wallet.valid?
+  end
+
+  test 'invalid empty type' do
+    @wallet.title = 'Title'
+    assert_not @wallet.valid?
+  end
+
+  test 'save wallet' do
+    @wallet.title = 'Title'
+    @wallet.type = 'type'
+    assert @wallet.save
+  end
 end
