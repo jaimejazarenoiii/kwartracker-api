@@ -52,7 +52,7 @@ jobs:
           push: true
           tags: jaimejazarenoiii/kwartracker-api:latest 
 
-  run_tests:
+  run_rubocop:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -66,14 +66,14 @@ jobs:
         with:
           context: .
           push: false
-      - name: Run tests
+      - name: Run rubocop
         run: |
-          docker-compose run web rails test
+          docker-compose run web rubocop
 
   slack_notification:
     name: Slack Notification
     runs-on: ubuntu-latest
-    needs: run_tests
+    needs: run_rubocop
     steps:
       - uses: actions/checkout@v2
       - name: Slack Notification
