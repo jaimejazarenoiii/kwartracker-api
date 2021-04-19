@@ -61,6 +61,6 @@ jobs:
           SLACK_CHANNEL: kwartracker-api-repo
           SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE: 'Post GH Action :rocket:'
-          SLACK_TITLE: Post GH Action :rocket:
+          SLACK_TITLE: 'Post GH Action :rocket:'
           SLACK_USERNAME: GABot
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
