@@ -14,6 +14,7 @@
 #  updated_at  :datetime         not null
 #
 class Wallet < ApplicationRecord
+  has_many :transactions, dependent: :destroy
   enum currency: %i[php usd]
   validates :title, presence: true, uniqueness: true
   validates :type, :currency, presence: true
