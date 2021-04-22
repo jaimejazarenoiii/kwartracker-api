@@ -24,4 +24,5 @@ class Category < ApplicationRecord
   has_many :categories, class_name: 'Category', foreign_key: 'parent_id'
   belongs_to :manager, class_name: 'Category', foreign_key: 'parent_id'
   has_one :image
+  validates :title, presence: true, uniqueness: true
 end
