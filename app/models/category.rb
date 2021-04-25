@@ -21,8 +21,10 @@
 #  fk_rails_...  (image_id => images.id)
 #
 class Category < ApplicationRecord
-  has_many :categories, class_name: 'Category', foreign_key: 'parent_id'
-  belongs_to :manager, class_name: 'Category', foreign_key: 'parent_id'
+  has_many :sub_categories, class_name: 'Category', foreign_key: 'parent_id'
+  belongs_to :parent, class_name: 'Category', foreign_key: 'parent_id', optional: true
   has_one :image
+  has_many :transactions
+  has_many :wallets, through: transactions
   validates :title, presence: true, uniqueness: true
 end
