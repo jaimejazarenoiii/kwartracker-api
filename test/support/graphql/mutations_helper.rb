@@ -42,6 +42,33 @@ module GraphQL
         }
       )
     end
+
+    def sign_in_with_email_mutation(_input = {})
+      %(
+        mutation SignInWithEmail(
+          $email: String!,
+          $password: String!
+        ) {
+          signInWithEmail(input: {
+            credentials: {
+              email: $email,
+              password: $password
+            }
+          }) {
+            token
+            user {
+              id
+              email
+              firstName
+              middleName
+              lastName
+              gender
+              age
+            }
+          }
+        }
+      )
+    end
   end
 end
 # rubocop:enable Metrics/MethodLength

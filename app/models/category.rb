@@ -8,23 +8,16 @@
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  image_id   :bigint           not null
 #  parent_id  :bigint
 #
 # Indexes
 #
-#  index_categories_on_image_id   (image_id)
 #  index_categories_on_parent_id  (parent_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (image_id => images.id)
 #
 class Category < ApplicationRecord
   has_many :sub_categories, class_name: 'Category', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Category', foreign_key: 'parent_id', optional: true
-  has_one :image
   has_many :transactions
-  has_many :wallets, through: transactions
+  has_many :wallets, through: :transactions
   validates :title, presence: true, uniqueness: true
 end

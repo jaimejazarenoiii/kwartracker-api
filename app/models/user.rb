@@ -34,4 +34,6 @@ class User < ApplicationRecord
   validates :password, :password_confirmation, presence: true, length: { in: 8..15 }
   validates :password, confirmation: true
   validates_format_of :email, with: Devise.email_regexp
+
+  has_many :wallets
 end

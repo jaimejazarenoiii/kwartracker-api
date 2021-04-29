@@ -6,6 +6,5 @@ class CreateCategories < ActiveRecord::Migration[6.1]
     end
 
     add_reference :categories, :parent, index: true, null:true
-    add_reference :categories, :image, null: false, foreign_key: true
   end
 end

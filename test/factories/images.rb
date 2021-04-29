@@ -17,7 +17,7 @@
 #
 FactoryBot.define do
   factory :image do
-    type { 1 }
-    imageable { nil }
+    type { 0 }
+    imageable_id { 1 }
   end
 end
