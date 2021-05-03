@@ -16,7 +16,7 @@
 #
 class Category < ApplicationRecord
   has_many :sub_categories, class_name: 'Category', foreign_key: 'parent_id'
-  belongs_to :parent, class_name: 'Category', foreign_key: 'parent_id', optional: true
+  belongs_to :parent, class_name: 'Category', optional: true
   has_many :transactions
   has_many :wallets, through: :transactions
   validates :title, presence: true, uniqueness: true

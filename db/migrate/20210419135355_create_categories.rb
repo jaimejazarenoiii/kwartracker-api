@@ -5,6 +5,6 @@ class CreateCategories < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_reference :categories, :parent, index: true, null:true
+    t.references :parent, foreign_key: { to_table: :categories }
   end
 end
