@@ -30,7 +30,7 @@
 FactoryBot.define do
   factory :transaction do
     title { 'Title' }
-    category_id { 1 }
+    # category_id { 1 }
     amount { 1.5 }
     wallet_id { 1 }
     datetime { '2021-04-14 20:47:33' }

@@ -32,4 +32,5 @@ class Transaction < ApplicationRecord
   has_one :category
   enum frequency: %i[day week month]
   validates :title, :amount, :datetime, presence: true
+  validates :amount, numericality: { greater_than: 0 }
 end

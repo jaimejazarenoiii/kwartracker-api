@@ -38,22 +38,42 @@ class TransactionTest < ActiveSupport::TestCase
   end
 
   test 'invalid title' do
-    @transaction.amount = 100.5
-    @transaction.datetime = '2021-04-14 20:47:33'
-    assert_not @transaction.valid?
+    expected_err_mssg = 'Title can\'t be blank'
+    @transaction.title = ''
+    @user.save
+    @wallet.user = @user
+    @wallet.save
+    @transaction.wallet_id = @wallet.id
+    refute @transaction.valid?
+    assert_equal @transaction.errors.full_messages.to_sentence, expected_err_mssg
+  end
+
+  test 'invalid wallet' do
+    expected_err_mssg = 'Wallet must exist'
+    refute @transaction.valid?
+    assert_equal @transaction.errors.full_messages.to_sentence, expected_err_mssg
   end
 
   test 'invalid amount' do
-    @transaction.title = 'Transaction Title'
-    @transaction.datetime = '2021-04-14 20:47:33'
-
-    assert_not @transaction.valid?
+    expected_err_mssg = 'Amount must be greater than 0'
+    @transaction.amount = 0
+    @user.save
+    @wallet.user = @user
+    @wallet.save
+    @transaction.wallet_id = @wallet.id
+    refute @transaction.valid?
+    assert_equal @transaction.errors.full_messages.to_sentence, expected_err_mssg
   end
 
   test 'invalid datetime' do
-    @transaction.title = 'Transaction Title'
-    @transaction.amount = 100.5
-    assert_not @transaction.valid?
+    expected_err_mssg = 'Datetime can\'t be blank'
+    @transaction.datetime = ''
+    @user.save
+    @wallet.user = @user
+    @wallet.save
+    @transaction.wallet_id = @wallet.id
+    refute @transaction.valid?
+    assert_equal @transaction.errors.full_messages.to_sentence, expected_err_mssg
   end
 
   test 'valid transaction' do
