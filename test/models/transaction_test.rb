@@ -35,6 +35,7 @@ class TransactionTest < ActiveSupport::TestCase
     @category = build(:category)
     @wallet = build(:normal_wallet)
     @transaction = build(:transaction)
+    @image = build(:image)
   end
 
   test 'invalid title' do
@@ -86,6 +87,8 @@ class TransactionTest < ActiveSupport::TestCase
 
     @transaction.wallet_id = @wallet.id
     @transaction.category_id = @category.id
+    @image.imageable = @transaction
+    assert @image.save
     assert @transaction.save
   end
 end

@@ -5,11 +5,11 @@
 # Table name: images
 #
 #  id             :bigint           not null, primary key
-#  imageable_type :string           not null
+#  imageable_type :string
 #  type           :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  imageable_id   :bigint           not null
+#  imageable_id   :bigint
 #
 # Indexes
 #
@@ -18,6 +18,5 @@
 FactoryBot.define do
   factory :image do
     type { 0 }
-    imageable_id { 1 }
   end
 end
