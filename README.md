@@ -1,4 +1,5 @@
 # Kwartracker API
+![](https://github.com/jaimejazarenoiii/kwartracker-api/actions/workflows/main.yml/badge.svg)
 
 ## Table of Contents
 * [General Info](#general-info)

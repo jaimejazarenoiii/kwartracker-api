@@ -65,10 +65,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'invalid age' do
-    @user.age = 9
-    expected_err_mssg = 'Age is not included in the list'
+    young_age_input = 9
+    old_age_input = 1000
+    @user.age = young_age_input
+    expected_err_mssg = "Age #{old_age_input} is not a valid age"
     refute @user.valid?
-    @user.age = 1000
+    @user.age = old_age_input
     refute @user.valid?
     assert_equal @user.errors.full_messages.to_sentence, expected_err_mssg
   end
