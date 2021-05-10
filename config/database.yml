@@ -53,6 +53,7 @@ test:
 #
 staging:
   database: kwartracker_staging
+  url: <%= ENV['DATABASE_URL'] %>
 
 production:
   <<: *default
