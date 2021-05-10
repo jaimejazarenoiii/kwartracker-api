@@ -58,9 +58,12 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'graphiql-rails'
   gem 'overcommit'
   gem 'spring'
+end
+
+group :development, :staging do
+  gem 'graphiql-rails'
 end
 
 group :test do
