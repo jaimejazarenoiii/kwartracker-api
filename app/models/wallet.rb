@@ -23,6 +23,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Wallet < ApplicationRecord
+  has_many :transactions, dependent: :destroy
   enum currency: %i[php usd]
   enum category: %i[normal goal budget]
   validates :title, presence: true, uniqueness: true
