@@ -126,4 +126,6 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   config.hosts << "kwartracker-api-staging-76deg.ondigitalocean.app"
+
+  config.assets.precompile += ['graphiql/rails/application.js', 'graphiql/rails/application.css']
 end

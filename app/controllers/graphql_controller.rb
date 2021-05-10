@@ -18,7 +18,7 @@ class GraphqlController < ApplicationController
     result = KwartrackerApiSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   rescue StandardError => e
-    raise e unless Rails.env.development?
+    raise e if Rails.env.production?
 
     handle_error_in_development e
   end
