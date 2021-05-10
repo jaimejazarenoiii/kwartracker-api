@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 2021_04_20_132949) do
 
   create_table "images", force: :cascade do |t|
     t.integer "type", null: false
-    t.string "imageable_type"
-    t.bigint "imageable_id"
+    t.string "imageable_type", null: false
+    t.bigint "imageable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
@@ -107,7 +107,6 @@ ActiveRecord::Schema.define(version: 2021_04_20_132949) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "transactions", "categories"
   add_foreign_key "transactions", "wallets"
   add_foreign_key "wallets", "users"

@@ -5,11 +5,11 @@
 # Table name: images
 #
 #  id             :bigint           not null, primary key
-#  imageable_type :string
+#  imageable_type :string           not null
 #  type           :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  imageable_id   :bigint
+#  imageable_id   :bigint           not null
 #
 # Indexes
 #

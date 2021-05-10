@@ -34,7 +34,7 @@ class WalletTest < ActiveSupport::TestCase
     assert_not @wallet.valid?
   end
 
-  test 'invalid empty type' do
+  test 'invalid empty category' do
     @wallet.title = 'Title'
     assert_not @wallet.valid?
   end
