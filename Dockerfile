@@ -17,6 +17,7 @@ COPY package.json /kwartracker-api/package.json
 COPY yarn.lock /kwartracker-api/yarn.lock
 RUN yarn install
 COPY . /kwartracker-api
+RUN bundle exec rake assets:precompile
 
 
 COPY entrypoint.sh /usr/bin/
