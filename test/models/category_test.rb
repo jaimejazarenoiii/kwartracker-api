@@ -14,6 +14,10 @@
 #
 #  index_categories_on_parent_id  (parent_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (parent_id => categories.id)
+#
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase

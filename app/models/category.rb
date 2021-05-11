@@ -14,6 +14,10 @@
 #
 #  index_categories_on_parent_id  (parent_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (parent_id => categories.id)
+#
 class Category < ApplicationRecord
   has_many :sub_categories, class_name: 'Category', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Category', optional: true
