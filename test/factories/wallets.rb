@@ -4,15 +4,12 @@
 #
 # Table name: wallets
 #
-#  id           :bigint           not null, primary key
-#  category     :integer          not null
-#  currency     :integer          not null
-#  target_date  :datetime
-#  target_total :float
-#  title        :string           not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :bigint
+#  id         :bigint           not null, primary key
+#  currency   :integer          not null
+#  title      :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :bigint
 #
 # Indexes
 #
@@ -23,17 +20,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 FactoryBot.define do
-  factory :normal_wallet, class: Wallet do
-    title { 'MyString' }
-    category { 0 }
+  factory :wallet do
+    title { Faker::Name.first_name }
     currency { 1 }
-  end
-
-  factory :goal_wallet, class: Wallet do
-    title { 'MyString' }
-    category { 1 }
-    currency { 1 }
-    target_total { 100_000 }
-    target_date { 'Sat, 17 Dec 2022 00:00:00 +0000' }
   end
 end

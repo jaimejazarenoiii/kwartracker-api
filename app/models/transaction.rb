@@ -29,7 +29,7 @@
 #
 class Transaction < ApplicationRecord
   belongs_to :wallet
-  has_one :category
+  has_one :category, optional: true
   has_one :image, as: :iamgeable
   enum frequency: %i[day week month]
   validates :title, :amount, :datetime, presence: true

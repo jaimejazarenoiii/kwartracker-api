@@ -4,15 +4,12 @@
 #
 # Table name: wallets
 #
-#  id           :bigint           not null, primary key
-#  category     :integer          not null
-#  currency     :integer          not null
-#  target_date  :datetime
-#  target_total :float
-#  title        :string           not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :bigint
+#  id         :bigint           not null, primary key
+#  currency   :integer          not null
+#  title      :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :bigint
 #
 # Indexes
 #
@@ -25,9 +22,7 @@
 class Wallet < ApplicationRecord
   has_many :transactions, dependent: :destroy
   enum currency: %i[php usd]
-  enum category: %i[normal goal budget]
   validates :title, presence: true, uniqueness: true
-  validates :category, :currency, presence: true
 
   belongs_to :user
 end

@@ -21,4 +21,5 @@
 class CategoryGroup < ApplicationRecord
   validates :title, presence: true
   has_many :categories
+  belongs_to :user
 end
