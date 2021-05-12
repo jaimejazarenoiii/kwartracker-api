@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_132949) do
+ActiveRecord::Schema.define(version: 2021_05_12_024546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,14 +47,22 @@ ActiveRecord::Schema.define(version: 2021_04_20_132949) do
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "parent_id"
-    t.index ["parent_id"], name: "index_categories_on_parent_id"
+    t.bigint "category_group_id"
+    t.index ["category_group_id"], name: "index_categories_on_category_group_id"
+  end
+
+  create_table "category_groups", force: :cascade do |t|
+    t.string "title", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_category_groups_on_user_id"
   end
 
   create_table "images", force: :cascade do |t|
     t.integer "type", null: false
-    t.string "imageable_type", null: false
-    t.bigint "imageable_id", null: false
+    t.string "imageable_type"
+    t.bigint "imageable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
@@ -107,7 +115,8 @@ ActiveRecord::Schema.define(version: 2021_04_20_132949) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "categories", "categories", column: "parent_id"
+  add_foreign_key "categories", "category_groups"
+  add_foreign_key "category_groups", "users"
   add_foreign_key "transactions", "categories"
   add_foreign_key "transactions", "wallets"
   add_foreign_key "wallets", "users"
