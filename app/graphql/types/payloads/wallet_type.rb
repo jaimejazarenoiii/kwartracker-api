@@ -8,9 +8,7 @@ module Types
       field :id, ID, null: false
       field :title, String, null: false
       field :currency, String, null: false
-      field :category, String, null: false
-      field :target_total, Float, null: true
-      field :target_date, GraphQL::Types::ISO8601Date, null: true
+      field :transactions, [Types::Payloads::TransactionType], null: true
     end
   end
 end
