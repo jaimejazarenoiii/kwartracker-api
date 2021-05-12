@@ -19,6 +19,7 @@ module ActiveSupport
     Dir[Rails.root.join('test/support/**/*.rb')].sort.each { |f| require f }
 
     include GraphQL::MutationsHelper
+    include GraphQL::QueriesHelper
     include GraphQL::ResponseParser
     include GraphQL::MutationVariables
   end

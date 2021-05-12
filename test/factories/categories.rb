@@ -4,22 +4,22 @@
 #
 # Table name: categories
 #
-#  id         :bigint           not null, primary key
-#  title      :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  parent_id  :bigint
+#  id                :bigint           not null, primary key
+#  title             :string           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  category_group_id :bigint
 #
 # Indexes
 #
-#  index_categories_on_parent_id  (parent_id)
+#  index_categories_on_category_group_id  (category_group_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (parent_id => categories.id)
+#  fk_rails_...  (category_group_id => category_groups.id)
 #
 FactoryBot.define do
   factory :category do
-    title { 'Category One' }
+    title { Faker::Name.first_name }
   end
 end
