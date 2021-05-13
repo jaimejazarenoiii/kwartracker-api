@@ -21,7 +21,15 @@
 require 'test_helper'
 
 class CategoryGroupTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @user = create(:user)
+    @group = @user.category_groups.first
+  end
+
+  test 'invalid title' do
+    expected_err_mssg = 'Title can\'t be blank'
+    @group.title = ''
+    refute @group.valid?
+    assert_equal @group.errors.full_messages.to_sentence, expected_err_mssg
+  end
 end
