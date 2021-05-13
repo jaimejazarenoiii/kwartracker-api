@@ -34,7 +34,7 @@ class TransactionTest < ActiveSupport::TestCase
     @user = create(:user)
     @group = @user.category_groups.first
     @category = @group.categories.first
-    @wallet = build(:wallet)
+    @wallet = @user.wallets.first
     @transaction = build(:transaction)
     @image = build(:image)
   end
@@ -42,27 +42,17 @@ class TransactionTest < ActiveSupport::TestCase
   test 'invalid title' do
     expected_err_mssg = 'Title can\'t be blank'
     @transaction.title = ''
-    @user.save
-    @wallet.user = @user
-    @wallet.save
-    @transaction.wallet_id = @wallet.id
+    @transaction.amount = 23.4
+    @transaction.category = @category
+    @transaction.wallet = @wallet
     refute @transaction.valid?
     assert_equal @transaction.errors.full_messages.to_sentence, expected_err_mssg
   end
 
   test 'invalid wallet' do
     expected_err_mssg = 'Wallet must exist'
-    refute @transaction.valid?
-    assert_equal @transaction.errors.full_messages.to_sentence, expected_err_mssg
-  end
-
-  test 'invalid amount' do
-    expected_err_mssg = 'Amount must be greater than 0'
-    @transaction.amount = 0
-    @user.save
-    @wallet.user = @user
-    @wallet.save
-    @transaction.wallet_id = @wallet.id
+    @transaction.category = @category
+    @transaction.amount = 23.4
     refute @transaction.valid?
     assert_equal @transaction.errors.full_messages.to_sentence, expected_err_mssg
   end
@@ -70,10 +60,8 @@ class TransactionTest < ActiveSupport::TestCase
   test 'invalid datetime' do
     expected_err_mssg = 'Datetime can\'t be blank'
     @transaction.datetime = ''
-    @user.save
-    @wallet.user = @user
-    @wallet.save
     @transaction.wallet_id = @wallet.id
+    @transaction.category = @category
     refute @transaction.valid?
     assert_equal @transaction.errors.full_messages.to_sentence, expected_err_mssg
   end

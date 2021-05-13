@@ -25,6 +25,16 @@ module GraphQL
       camelize_hash_keys(attrs).to_json
     end
 
+    def add_wallet_mutation_variables(attrs = {})
+      wallet_attrs = attributes_for(:wallet)
+      wallet_attrs[:amount] = 123
+
+      attrs.reverse_merge!(wallet_attrs)
+
+      # Camelize for GraphQL compatibility and return
+      camelize_hash_keys(attrs).to_json
+    end
+
     private
 
     def camelize_hash_keys(hash)
