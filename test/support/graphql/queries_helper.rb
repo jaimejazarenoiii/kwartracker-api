@@ -24,17 +24,51 @@ module GraphQL
       %(
         query {
           wallets {
-            token
-            user {
-              id
+            title
+            currency
+            transactions {
               title
-              category
-              currency
-              targetTotal
-              targetDate
+              amount
+              datetime
+              category {
+                id
+                title
+                budgets {
+                  id
+                  amount
+                  updatedAt
+                  createdAt
+                }
+              }
             }
           }
         }
+      )
+    end
+
+    def category_groups_query(_input = {})
+      %(
+      query {
+        categoryGroups {
+          id
+          title
+          categories {
+            id
+            title
+            transactions {
+              title
+              amount
+              datetime
+            }
+            budgets {
+              id
+              amount
+              updatedAt
+              createdAt
+            }
+          }
+        }
+      }
       )
     end
   end
