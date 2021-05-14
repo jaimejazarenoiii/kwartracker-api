@@ -38,4 +38,21 @@ class User < ApplicationRecord
   has_many :wallets
   has_many :category_groups
   has_many :categories, through: :category_groups
+
+  after_create :create_to_be_budgeted_category
+
+  def to_be_budgeted_category
+    category_groups.first.categories.first
+  end
+
+  private
+
+  def create_to_be_budgeted_category
+    group = category_groups.new
+    group.title = 'To be budgeted'
+    group.save
+    category = group.categories.new
+    category.title = 'To be budgeted'
+    category.save
+  end
 end

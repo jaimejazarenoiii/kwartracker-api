@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-# test/graphql/queries/category_groups_query_test.rb
-
 require 'test_helper'
 
-module Queries
-  class CategoryGroupsQueryTest < ActionDispatch::IntegrationTest
+module Mutations
+  class AddWalletMutationTest < ActionDispatch::IntegrationTest
     setup do
       password = 'Password123!'
       expected_email = 'info@kwartracker.com'
@@ -24,15 +22,16 @@ module Queries
       @token = @json_response.dig('signInWithEmail', 'token')
     end
 
-    test 'fetch category groups' do
+    test 'valid add wallet' do
       post('/graphql',
            params: {
-             query: category_groups_query
+             query: add_wallet_mutation,
+             variables: add_wallet_mutation_variables
            }, headers: {
              'Authorization': "Bearer #{@token}"
            })
       @json_response = parse_graphql_response(response.body)
-      assert_equal @json_response['categoryGroups'].count, 2
+      assert_equal @json_response.dig('addWallet', 'transactions').count, 1
     end
   end
 end

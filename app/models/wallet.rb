@@ -20,9 +20,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Wallet < ApplicationRecord
-  has_many :transactions, dependent: :destroy
   enum currency: %i[php usd]
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true
 
   belongs_to :user
+  has_many :transactions
 end

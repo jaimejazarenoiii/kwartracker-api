@@ -69,6 +69,33 @@ module GraphQL
         }
       )
     end
+
+    def add_wallet_mutation(_input = {})
+      %(
+        mutation AddWallet(
+          $title: String!,
+          $amount: Float!,
+          $currency: Int!
+        ) {
+          addWallet(input: {
+            title: $title,
+            amount: $amount,
+            currency: $currency
+          }) {
+            title
+            currency
+            transactions {
+              id
+              title
+              amount
+              category {
+                title
+              }
+            }
+          }
+        }
+      )
+    end
   end
 end
 # rubocop:enable Metrics/MethodLength

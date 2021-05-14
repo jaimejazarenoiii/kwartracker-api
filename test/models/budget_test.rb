@@ -24,7 +24,7 @@ class BudgetTest < ActiveSupport::TestCase
   setup do
     @user = create(:user)
     @group = @user.category_groups.first
-    @budget = @group.categories.first.budgets.first
+    @budget = @group.categories.first.budgets.new
   end
 
   test 'save budget' do
