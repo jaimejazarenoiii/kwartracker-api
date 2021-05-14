@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_12_024546) do
+ActiveRecord::Schema.define(version: 2021_05_12_060735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 2021_05_12_024546) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "budgets", force: :cascade do |t|
+    t.float "amount", default: 0.0, null: false
+    t.bigint "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_budgets_on_category_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -103,10 +111,7 @@ ActiveRecord::Schema.define(version: 2021_05_12_024546) do
 
   create_table "wallets", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "category", null: false
     t.integer "currency", null: false
-    t.float "target_total"
-    t.datetime "target_date"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -115,6 +120,7 @@ ActiveRecord::Schema.define(version: 2021_05_12_024546) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "budgets", "categories"
   add_foreign_key "categories", "category_groups"
   add_foreign_key "category_groups", "users"
   add_foreign_key "transactions", "categories"

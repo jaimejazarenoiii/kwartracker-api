@@ -35,5 +35,11 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { password }
     password_confirmation { password }
+
+    after(:create) do |user|
+      create(:wallet, user: user)
+      create(:category_group, user: user)
+      user.reload
+    end
   end
 end

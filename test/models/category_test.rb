@@ -22,7 +22,8 @@ require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
   setup do
-    @group = create(:category_group)
+    @user = create(:user)
+    @group = @user.category_groups.first
     @category = @group.categories.first
   end
 

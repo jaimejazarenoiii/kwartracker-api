@@ -22,5 +22,6 @@ class Category < ApplicationRecord
   validates :title, presence: true
 
   belongs_to :group, class_name: 'CategoryGroup', foreign_key: 'category_group_id'
+  has_many :budgets
   has_many :transactions
 end

@@ -4,15 +4,12 @@
 #
 # Table name: wallets
 #
-#  id           :bigint           not null, primary key
-#  category     :integer          not null
-#  currency     :integer          not null
-#  target_date  :datetime
-#  target_total :float
-#  title        :string           not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :bigint
+#  id         :bigint           not null, primary key
+#  currency   :integer          not null
+#  title      :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :bigint
 #
 # Indexes
 #
@@ -27,7 +24,7 @@ require 'test_helper'
 class WalletTest < ActiveSupport::TestCase
   setup do
     @user = create(:user)
-    @wallet = build(:normal_wallet)
+    @wallet = build(:wallet)
   end
 
   test 'invalid empty title' do

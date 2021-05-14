@@ -21,5 +21,11 @@
 FactoryBot.define do
   factory :category do
     title { Faker::Name.first_name }
+
+    after(:create) do |category|
+      create(:budget, category: category)
+
+      category.reload
+    end
   end
 end

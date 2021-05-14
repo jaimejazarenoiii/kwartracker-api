@@ -31,10 +31,10 @@ require 'test_helper'
 
 class TransactionTest < ActiveSupport::TestCase
   setup do
-    @user = build(:user)
-    @group = create(:category_group)
+    @user = create(:user)
+    @group = @user.category_groups.first
     @category = @group.categories.first
-    @wallet = build(:normal_wallet)
+    @wallet = build(:wallet)
     @transaction = build(:transaction)
     @image = build(:image)
   end
