@@ -32,7 +32,8 @@ require 'test_helper'
 class TransactionTest < ActiveSupport::TestCase
   setup do
     @user = build(:user)
-    @category = build(:category)
+    @group = create(:category_group)
+    @category = @group.categories.first
     @wallet = build(:normal_wallet)
     @transaction = build(:transaction)
     @image = build(:image)

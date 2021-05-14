@@ -10,5 +10,6 @@ module Types
     # They will be entry points for queries on your schema.
 
     field :wallets, resolver: ::Resolvers::WalletsResolver
+    field :profile, resolver: ::Resolvers::UserProfileResolver
   end
 end

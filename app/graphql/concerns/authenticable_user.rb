@@ -9,7 +9,7 @@ module AuthenticableUser
   end
 
   def token
-    @token ||= request.headers['Authorization'].to_s.split(' ').last || cookies['Authorization'].to_s.split(' ').last
+    @token ||= request.headers['Authorization'].to_s.split(' ').last
   end
 
   def decoded_token

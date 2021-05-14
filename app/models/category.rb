@@ -4,24 +4,23 @@
 #
 # Table name: categories
 #
-#  id         :bigint           not null, primary key
-#  title      :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  parent_id  :bigint
+#  id                :bigint           not null, primary key
+#  title             :string           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  category_group_id :bigint
 #
 # Indexes
 #
-#  index_categories_on_parent_id  (parent_id)
+#  index_categories_on_category_group_id  (category_group_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (parent_id => categories.id)
+#  fk_rails_...  (category_group_id => category_groups.id)
 #
 class Category < ApplicationRecord
-  has_many :sub_categories, class_name: 'Category', foreign_key: 'parent_id'
-  belongs_to :parent, class_name: 'Category', optional: true
+  validates :title, presence: true
+
+  belongs_to :group, class_name: 'CategoryGroup', foreign_key: 'category_group_id'
   has_many :transactions
-  has_many :wallets, through: :transactions
-  validates :title, presence: true, uniqueness: true
 end

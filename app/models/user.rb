@@ -36,4 +36,5 @@ class User < ApplicationRecord
   validates_format_of :email, with: Devise.email_regexp
 
   has_many :wallets
+  has_many :categories
 end
