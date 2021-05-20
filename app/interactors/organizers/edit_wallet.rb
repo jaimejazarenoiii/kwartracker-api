@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-class EditWallet
-  include Interactor::Organizer
+module Organizers
+  class EditWallet
+    include Interactor::Organizer
 
-  organize FindWallet, EditWallet
+    organize ::FindWallet, ::EditWallet
+  end
 end

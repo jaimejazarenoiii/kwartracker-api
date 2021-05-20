@@ -13,6 +13,6 @@ class FindWallet
 
   def find_wallet
     context[:wallet] = @current_user.wallets.find_by_id(context[:id])
-    context.fail!('Record not found.') if context[:wallet].nil?
+    context.fail!(error: 'Record not found.') if context[:wallet].nil?
   end
 end

@@ -7,7 +7,7 @@ class EditWallet
   def call
     @wallet = context[:wallet]
     @wallet.title = context[:title]
-    @wallet.curency = context[:currency]
+    @wallet.currency = context[:currency]
     context[:wallet] = @wallet
     save_wallet
   end
@@ -15,6 +15,6 @@ class EditWallet
   private
 
   def save_wallet
-    context.fail!(@wallet.errors.full_messages.to_sentence) unless @wallet.save
+    context.fail!(error: @wallet.errors.full_messages.to_sentence) unless @wallet.save
   end
 end
