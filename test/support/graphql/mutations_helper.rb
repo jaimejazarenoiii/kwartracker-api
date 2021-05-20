@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # test/support/graphql/mutations_helper.rb
-# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/MethodLength, Metrics/ModuleLength
 module GraphQL
   module MutationsHelper
     def sign_up_with_email_mutation(_input = {})
@@ -96,6 +96,33 @@ module GraphQL
         }
       )
     end
+
+    def edit_wallet_mutation(_input = {})
+      %(
+        mutation EditWallet(
+          $id: ID!,
+          $title: String!,
+          $currency: Int!
+        ) {
+          editWallet(input: {
+            id: $id,
+            title: $title,
+            currency: $currency
+          }) {
+            title
+            currency
+            transactions {
+              id
+              title
+              amount
+              category {
+                title
+              }
+            }
+          }
+        }
+      )
+    end
   end
 end
-# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/MethodLength, Metrics/ModuleLength

@@ -23,5 +23,9 @@ FactoryBot.define do
   factory :wallet do
     title { Faker::Name.first_name }
     currency { 1 }
+    after(:create) do |wallet|
+      create(:transaction, wallet: wallet, category: wallet.user.to_be_budgeted_category)
+      wallet.reload
+    end
   end
 end
