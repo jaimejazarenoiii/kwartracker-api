@@ -123,6 +123,29 @@ module GraphQL
         }
       )
     end
+
+    def delete_wallet_mutation(_input = {})
+      %(
+        mutation DeleteWallet(
+          $id: ID!,
+        ) {
+          deleteWallet(input: {
+            id: $id,
+          }) {
+            title
+            currency
+            transactions {
+              id
+              title
+              amount
+              category {
+                title
+              }
+            }
+          }
+        }
+      )
+    end
   end
 end
 # rubocop:enable Metrics/MethodLength, Metrics/ModuleLength

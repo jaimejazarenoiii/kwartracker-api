@@ -15,7 +15,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  category_id    :bigint           not null
-#  wallet_id      :bigint           not null
+#  wallet_id      :bigint
 #
 # Indexes
 #
@@ -25,7 +25,6 @@
 # Foreign Keys
 #
 #  fk_rails_...  (category_id => categories.id)
-#  fk_rails_...  (wallet_id => wallets.id)
 #
 require 'test_helper'
 
