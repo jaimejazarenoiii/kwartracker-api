@@ -15,7 +15,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  category_id    :bigint           not null
-#  wallet_id      :bigint           not null
+#  wallet_id      :bigint
 #
 # Indexes
 #
@@ -25,12 +25,11 @@
 # Foreign Keys
 #
 #  fk_rails_...  (category_id => categories.id)
-#  fk_rails_...  (wallet_id => wallets.id)
 #
 class Transaction < ApplicationRecord
   belongs_to :wallet
   belongs_to :category
-  has_one :image, as: :iamgeable
+  has_one :image, as: :imageable
   enum frequency: %i[day week month]
   validates :title, :amount, :datetime, presence: true
   attribute :datetime, :datetime, default: -> { Time.zone.now }

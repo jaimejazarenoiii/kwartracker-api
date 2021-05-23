@@ -10,10 +10,9 @@ class CreateTransactions < ActiveRecord::Migration[6.1]
       t.integer :frequency, null: true
       t.string :frequence_date, null: true
       t.string :with, null: true
+      t.belongs_to :wallet
 
       t.timestamps
     end
-
-		add_reference :transactions, :wallet, null: false, foreign_key: true
   end
 end

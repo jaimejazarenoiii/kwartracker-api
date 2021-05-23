@@ -35,8 +35,8 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   validates_format_of :email, with: Devise.email_regexp
 
-  has_many :wallets
-  has_many :category_groups
+  has_many :wallets, dependent: :destroy
+  has_many :category_groups, dependent: :destroy
   has_many :categories, through: :category_groups
 
   after_create :create_to_be_budgeted_category

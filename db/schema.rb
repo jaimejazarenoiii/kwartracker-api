@@ -84,9 +84,9 @@ ActiveRecord::Schema.define(version: 2021_05_12_060735) do
     t.integer "frequency"
     t.string "frequence_date"
     t.string "with"
+    t.bigint "wallet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "wallet_id", null: false
     t.bigint "category_id", null: false
     t.index ["category_id"], name: "index_transactions_on_category_id"
     t.index ["wallet_id"], name: "index_transactions_on_wallet_id"
@@ -124,6 +124,5 @@ ActiveRecord::Schema.define(version: 2021_05_12_060735) do
   add_foreign_key "categories", "category_groups"
   add_foreign_key "category_groups", "users"
   add_foreign_key "transactions", "categories"
-  add_foreign_key "transactions", "wallets"
   add_foreign_key "wallets", "users"
 end
