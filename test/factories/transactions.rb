@@ -29,13 +29,13 @@
 #
 FactoryBot.define do
   factory :transaction do
-    title { 'Title' }
+    title { Faker::Name.first_name }
     amount { 1.5 }
     wallet_id { 1 }
     datetime { '2021-04-14 20:47:33' }
     recurring { false }
     frequency { 1 }
     frequence_date { '2021-04-14 20:47:33' }
-    with { 'with name' }
+    with { Faker::Name.first_name }
   end
 end

@@ -13,6 +13,10 @@ module Queries
                      email: expected_email,
                      password: password,
                      password_confirmation: password)
+      @transaction = build(:transaction)
+      @transaction.wallet = @user.wallets.first
+      @transaction.category = @user.categories.first
+      @transaction.save
       post('/graphql',
            params: {
              query: sign_in_with_email_mutation,
