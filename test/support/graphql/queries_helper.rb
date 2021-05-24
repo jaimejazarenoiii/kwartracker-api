@@ -71,6 +71,28 @@ module GraphQL
       }
       )
     end
+
+    def transactions_query(_input = {})
+      %(
+        query {
+          transactions {
+            title
+            amount
+            datetime
+            category {
+              id
+              title
+              budgets {
+                id
+                amount
+                updatedAt
+                createdAt
+              }
+            }
+          }
+        }
+      )
+    end
   end
 end
 # rubocop:enable Metrics/MethodLength
