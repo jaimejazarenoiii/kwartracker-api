@@ -12,5 +12,6 @@ module Types
     field :wallets, resolver: ::Resolvers::WalletsResolver
     field :profile, resolver: ::Resolvers::UserProfileResolver
     field :category_groups, resolver: ::Resolvers::CategoryGroupsResolver
+    field :categories, resolver: ::Resolvers::CategoriesResolver
   end
 end
