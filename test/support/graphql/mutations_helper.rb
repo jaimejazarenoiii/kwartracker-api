@@ -146,6 +146,24 @@ module GraphQL
         }
       )
     end
+
+    def add_category_group_mutation(_input = {})
+      %(
+        mutation AddCategoryGroup(
+          $title: String!
+        ) {
+          addCategoryGroup(input: {
+            title: $title
+          }) {
+            title
+            categories {
+              id
+              title
+            }
+          }
+        }
+      )
+    end
   end
 end
 # rubocop:enable Metrics/MethodLength, Metrics/ModuleLength
