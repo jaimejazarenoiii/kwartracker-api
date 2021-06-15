@@ -15,6 +15,7 @@ class AddCategory
 
   def apply_category_params
     @category.title = context.title
+    @category.category_group_id = context.category_group_id
   end
 
   def create_category
