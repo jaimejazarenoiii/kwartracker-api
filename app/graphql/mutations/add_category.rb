@@ -4,6 +4,7 @@ module Mutations
   class AddCategory < BaseMutation
     description 'Add Category'
     argument :title, String, required: true
+    argument :category_group_id, ID, required: true
 
     type ::Types::Payloads::CategoryType
 
