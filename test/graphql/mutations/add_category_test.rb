@@ -37,6 +37,7 @@ module Mutations
       @json_response = parse_graphql_response(response.body)
 
       print(@json_response)
+      # byebug
       # assert_equal @json_response.dig('addCategoryGroup').dig('title'), 'category group'
     end
   end
