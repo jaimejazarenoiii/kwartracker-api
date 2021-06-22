@@ -35,10 +35,7 @@ module Mutations
              'Authorization': "Bearer #{@token}"
            })
       @json_response = parse_graphql_response(response.body)
-
-      print(@json_response)
-      # byebug
-      # assert_equal @json_response.dig('addCategoryGroup').dig('title'), 'category group'
+      assert_equal @json_response['addCategory']['title'], 'category'
     end
   end
 end

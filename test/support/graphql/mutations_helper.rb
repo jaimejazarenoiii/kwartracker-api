@@ -169,14 +169,14 @@ module GraphQL
       %(
         mutation AddCategory(
           $title: String!,
-          $category_group_id: ID!
+          $categoryGroupId: ID!
         ) {
           addCategory(input: {
             title: $title,
-            category_group_id: $category_group_id
+            categoryGroupId: $categoryGroupId
           }) {
+            id
             title
-            category_group_id
             transactions {
               title
               amount
