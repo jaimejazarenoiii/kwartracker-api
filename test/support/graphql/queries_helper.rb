@@ -77,21 +77,21 @@ module GraphQL
         query {
           categories {
             id
-            title,
-            budgets{
-              amount,
-              id,
-              createdAt,
+            title
+            budgets {
+              amount
+              id
+              createdAt
               updatedAt
             },
-            transactions{
-              amount,
-              datetime,
-              id,
-              title,
-              wallet{
-                currency,
-                id,
+            transactions {
+              amount
+              datetime
+              id
+              title
+              wallet {
+                currency
+                id
                 title
               }
             }
