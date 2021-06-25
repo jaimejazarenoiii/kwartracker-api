@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# app/interactors/find_wallet.rb
 class DeleteCategory
   include Interactor
 
