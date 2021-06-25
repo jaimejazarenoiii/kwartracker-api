@@ -146,6 +146,30 @@ module GraphQL
         }
       )
     end
+
+    def delete_category_mutation(_input = {})
+      %(
+        mutation DeleteCategory(
+          $id: ID!,
+        ) {
+          deleteCategory(input: {
+            id: $id,
+          }) {
+            id
+            title
+            budgets {
+              id
+              amount
+            }
+            transactions {
+              id
+              title
+              amount
+            }
+          }
+        }
+      )
+    end
   end
 end
 # rubocop:enable Metrics/MethodLength, Metrics/ModuleLength

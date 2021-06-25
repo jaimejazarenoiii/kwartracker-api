@@ -2,6 +2,7 @@
 
 module Types
   class MutationType < Types::BaseObject
+    field :delete_category, mutation: Mutations::DeleteCategory
     field :edit_wallet, mutation: Mutations::EditWallet
     field :delete_wallet, mutation: Mutations::DeleteWallet
     field :add_wallet, mutation: Mutations::AddWallet
