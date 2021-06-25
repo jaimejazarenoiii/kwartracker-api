@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# app/interactors/find_category.rb
 class FindCategory
   include Interactor
 

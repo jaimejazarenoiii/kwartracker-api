@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# app/interactors/delete-category.rb
 class DeleteCategory
   include Interactor
 
