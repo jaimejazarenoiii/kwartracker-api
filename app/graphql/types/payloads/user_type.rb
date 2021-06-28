@@ -10,8 +10,8 @@ module Types
       field :first_name, String, null: false
       field :middle_name, String, null: true
       field :last_name, String, null: false
-      field :gender, String, null: false
-      field :age, Integer, null: false
+      field :gender, String, null: true
+      field :age, Integer, null: true
     end
   end
 end
