@@ -38,6 +38,7 @@ class User < ApplicationRecord
   has_many :wallets, dependent: :destroy
   has_many :category_groups, dependent: :destroy
   has_many :categories, through: :category_groups
+  has_many :transactions, through: :wallets
 
   after_create :create_to_be_budgeted_category
 
