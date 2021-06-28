@@ -31,7 +31,7 @@ class User < ApplicationRecord
   enum gender: %i[male female]
   validates :email, presence: true, uniqueness: true
   validates :first_name, :middle_name, :last_name, length: { maximum: 20 }
-  validates :age, inclusion: { in: 13..100, message: '%<value>s is not a valid age' }
+  validates :age, inclusion: { in: 13..100, message: '%<value>s is not a valid age', allow_nil: true }
   validates :password, :password_confirmation, presence: true, length: { in: 8..15 }
   validates :password, confirmation: true
   validates_format_of :email, with: Devise.email_regexp
@@ -39,6 +39,7 @@ class User < ApplicationRecord
   has_many :wallets, dependent: :destroy
   has_many :category_groups, dependent: :destroy
   has_many :categories, through: :category_groups
+  has_many :transactions, through: :wallets
 
   after_create :create_preset_categories
 

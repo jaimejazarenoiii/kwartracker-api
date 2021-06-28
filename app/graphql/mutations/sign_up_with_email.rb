@@ -8,7 +8,7 @@ module Mutations
     argument :email, String, required: true
     argument :password, String, required: true
     argument :password_confirmation, String, required: true
-    argument :profile, Types::Inputs::ProfileInput, required: true
+    argument :profile, Types::Inputs::ProfileInput, required: false
 
     type ::Types::Payloads::AuthenticatedUserType
 
