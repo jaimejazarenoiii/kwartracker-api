@@ -36,7 +36,7 @@ module Queries
              'Authorization': "Bearer #{@token}"
            })
       json_response = parse_graphql_response(response.body)
-      assert_equal json_response['transactions'].count, 1
+      assert_equal json_response['transactions'].count, 2
     end
   end
 end
