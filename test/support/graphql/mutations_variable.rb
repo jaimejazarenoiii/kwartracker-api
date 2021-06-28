@@ -37,7 +37,6 @@ module GraphQL
 
     def add_category_group_mutation_variables(attrs = {})
       category_group_attrs = attributes_for(:category_group)
-      category_group_attrs[:title] = 'category group'
 
       attrs.reverse_merge!(category_group_attrs)
 
@@ -47,8 +46,6 @@ module GraphQL
 
     def add_category_mutation_variables(attrs = {})
       category_attrs = attributes_for(:category)
-      category_attrs[:title] = 'category'
-      category_attrs[:category_group_id] = @category_group.id
 
       attrs.reverse_merge!(category_attrs)
 

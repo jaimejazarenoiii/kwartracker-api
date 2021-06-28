@@ -5,8 +5,8 @@ class AddCategory
   include Interactor
 
   def call
-    @current_user = context.current_user
-    @category = @current_user.categories.new
+    current_user = context.current_user
+    @category = current_user.categories.new
     apply_category_params
     create_category
   end

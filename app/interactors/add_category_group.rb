@@ -5,8 +5,8 @@ class AddCategoryGroup
   include Interactor
 
   def call
-    @current_user = context.current_user
-    @category_group = @current_user.category_groups.new
+    current_user = context.current_user
+    @category_group = current_user.category_groups.new
     apply_category_group_params
     create_category_group
   end
