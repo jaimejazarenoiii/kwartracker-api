@@ -35,6 +35,24 @@ module GraphQL
       camelize_hash_keys(attrs).to_json
     end
 
+    def add_category_group_mutation_variables(attrs = {})
+      category_group_attrs = attributes_for(:category_group)
+
+      attrs.reverse_merge!(category_group_attrs)
+
+      # Camelize for GraphQL compatibility and return
+      camelize_hash_keys(attrs).to_json
+    end
+
+    def add_category_mutation_variables(attrs = {})
+      category_attrs = attributes_for(:category)
+
+      attrs.reverse_merge!(category_attrs)
+
+      # Camelize for GraphQL compatibility and return
+      camelize_hash_keys(attrs).to_json
+    end
+
     private
 
     def camelize_hash_keys(hash)
