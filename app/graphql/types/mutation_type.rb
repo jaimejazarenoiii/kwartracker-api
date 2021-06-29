@@ -8,5 +8,7 @@ module Types
     field :sign_in_with_email, mutation: Mutations::SignInWithEmail
     field :sign_up_with_email, mutation: Mutations::SignUpWithEmail
     field :update_profile, mutation: Mutations::UpdateProfile
+    field :addCategoryGroup, mutation: Mutations::AddCategoryGroup
+    field :addCategory, mutation: Mutations::AddCategory
   end
 end

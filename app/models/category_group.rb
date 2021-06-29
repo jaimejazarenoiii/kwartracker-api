@@ -19,6 +19,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class CategoryGroup < ApplicationRecord
+  DEFAULT_GROUPS = %i[health bills home gifts fun].freeze
   validates :title, presence: true
   has_many :categories
   belongs_to :user
