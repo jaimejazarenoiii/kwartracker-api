@@ -9,5 +9,6 @@ module Types
     field :sign_up_with_email, mutation: Mutations::SignUpWithEmail
     field :addCategoryGroup, mutation: Mutations::AddCategoryGroup
     field :addCategory, mutation: Mutations::AddCategory
+    field :deleteCategoryGroup, mutation: Mutations::DeleteCategoryGroup
   end
 end
