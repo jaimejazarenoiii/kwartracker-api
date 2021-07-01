@@ -35,6 +35,17 @@ module GraphQL
       camelize_hash_keys(attrs).to_json
     end
 
+    def update_profile_mutation_variables(attrs = {})
+      user_attrs = attributes_for(:user).except(:email,
+                                                :password,
+                                                :password_confirmation)
+
+      attrs.reverse_merge!(user_attrs)
+
+      # Camelize for GraphQL compatibility and return
+      camelize_hash_keys(attrs).to_json
+    end
+
     def add_category_group_mutation_variables(attrs = {})
       category_group_attrs = attributes_for(:category_group)
 

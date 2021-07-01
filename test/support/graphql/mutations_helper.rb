@@ -147,6 +147,34 @@ module GraphQL
       )
     end
 
+    def update_profile_mutation(_input = {})
+      %(
+        mutation UpdateProfile(
+          $firstName: String!,
+          $middleName: String,
+          $lastName: String!,
+          $gender: Int!,
+          $age: Int!
+        ) {
+          updateProfile(input: {
+            firstName: $firstName,
+            middleName: $middleName,
+            lastName: $lastName,
+            gender: $gender,
+            age: $age
+          }) {
+            id
+            firstName
+            middleName
+            lastName
+            email
+            age
+            gender
+          }
+        }
+      )
+    end
+
     def add_category_group_mutation(_input = {})
       %(
         mutation AddCategoryGroup(
