@@ -220,6 +220,44 @@ module GraphQL
         }
       )
     end
+
+    def delete_category_group_mutation(_input = {})
+      %(
+        mutation DeleteCategoryGroup(
+          $id: ID!
+        ) {
+          deleteCategoryGroup(input: {
+            id: $id
+          }) {
+            title
+            categories {
+              id
+              title
+            }
+          }
+        }
+      )
+    end
+
+    def edit_category_group_mutation(_input = {})
+      %(
+        mutation EditCategoryGroup(
+          $id: ID!,
+          $title: String!
+        ) {
+          editCategoryGroup(input: {
+            id: $id,
+            title: $title
+          }) {
+            title
+            categories {
+              id
+              title
+            }
+          }
+        }
+      )
+    end
   end
 end
 # rubocop:enable Metrics/MethodLength, Metrics/ModuleLength
