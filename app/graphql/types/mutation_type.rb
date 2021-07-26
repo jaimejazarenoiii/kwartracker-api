@@ -10,5 +10,6 @@ module Types
     field :update_profile, mutation: Mutations::UpdateProfile
     field :addCategoryGroup, mutation: Mutations::AddCategoryGroup
     field :addCategory, mutation: Mutations::AddCategory
+    field :deleteCategoryGroup, mutation: Mutations::DeleteCategoryGroup
   end
 end

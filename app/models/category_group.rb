@@ -21,6 +21,6 @@
 class CategoryGroup < ApplicationRecord
   DEFAULT_GROUPS = %i[health bills home gifts fun].freeze
   validates :title, presence: true
-  has_many :categories
+  has_many :categories, dependent: :destroy
   belongs_to :user
 end
