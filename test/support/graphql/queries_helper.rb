@@ -105,7 +105,7 @@ module GraphQL
               id
               createdAt
               updatedAt
-            },
+            }
             transactions {
               amount
               datetime
