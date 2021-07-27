@@ -19,6 +19,11 @@
 #  fk_rails_...  (category_group_id => category_groups.id)
 #
 class Category < ApplicationRecord
+  DEFAULT_HEALTH_CATEGORIES = %i[hospital medicine personal_care].freeze
+  DEFAULT_BILLS_CATEGORIES = %i[electricity phone internet water rental].freeze
+  DEFAULT_HOME_CATEGORIES = %i[maintenance groceries water rental].freeze
+  DEFAULT_GIFTS_CATEGORIES = %i[donation marriage birthday funeral].freeze
+  DEFAULT_FUN_CATEGORIES = %i[vices games].freeze
   validates :title, presence: true
 
   belongs_to :group, class_name: 'CategoryGroup', foreign_key: 'category_group_id'

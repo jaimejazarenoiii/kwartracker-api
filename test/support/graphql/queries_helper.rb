@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # test/support/graphql/queries_helper.rb
-# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/MethodLength, Metrics/ModuleLength
 module GraphQL
   module QueriesHelper
     def user_profile_query(_input: {})
@@ -71,6 +71,56 @@ module GraphQL
       }
       )
     end
+
+    def transactions_query(_input = {})
+      %(
+        query {
+          transactions {
+            title
+            amount
+            datetime
+            category {
+              id
+              title
+              budgets {
+                id
+                amount
+                updatedAt
+                createdAt
+              }
+            }
+          }
+        }
+      )
+    end
+
+    def categories_query(_input = {})
+      %(
+        query {
+          categories {
+            id
+            title
+            budgets {
+              amount
+              id
+              createdAt
+              updatedAt
+            }
+            transactions {
+              amount
+              datetime
+              id
+              title
+              wallet {
+                currency
+                id
+                title
+              }
+            }
+          }
+        }
+      )
+    end
   end
 end
-# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/MethodLength, Metrics/ModuleLength

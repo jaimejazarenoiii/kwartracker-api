@@ -32,7 +32,7 @@ module Queries
              'Authorization': "Bearer #{@token}"
            })
       @json_response = parse_graphql_response(response.body)
-      assert_equal @json_response['categoryGroups'].count, 2
+      assert_equal @json_response['categoryGroups'].count, 7
     end
   end
 end

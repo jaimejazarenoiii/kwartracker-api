@@ -5,10 +5,11 @@ class DeleteCategory
   include Interactor
 
   def call
-    @current_user = context[:current_user]
+    current_user = context[:current_user]
     @category = context[:category]
+
     delete_category
-    context[:categories] = @current_user.categories
+    context[:categories] = current_user.categories
   end
 
   private

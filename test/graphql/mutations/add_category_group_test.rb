@@ -3,7 +3,7 @@
 require 'test_helper'
 
 module Mutations
-  class DeleteCategoryMutationTest < ActionDispatch::IntegrationTest
+  class AddCategoryGroupMutationTest < ActionDispatch::IntegrationTest
     setup do
       password = 'Password123!'
       expected_email = 'info@kwartracker.com'
@@ -17,36 +17,21 @@ module Mutations
              variables: sign_in_with_email_mutation_variables({ email: user.email,
                                                                 password: password })
            })
-      @category = user.categories.first
+
       json_response = parse_graphql_response(response.body)
       @token = json_response.dig('signInWithEmail', 'token')
     end
 
-    test 'valid delete category' do
+    test 'valid add category group' do
       post('/graphql',
            params: {
-             query: delete_category_mutation,
-             variables: { id: @category.id }
+             query: add_category_group_mutation,
+             variables: add_category_group_mutation_variables({ title: 'category group' })
            }, headers: {
              'Authorization': "Bearer #{@token}"
            })
-
       json_response = parse_graphql_response(response.body)
-      assert_equal json_response['deleteCategory'].count, 19
-    end
-
-    test 'invalid category id' do
-      post('/graphql',
-           params: {
-             query: delete_category_mutation,
-             variables: { id: 100 }
-           }, headers: {
-             'Authorization': "Bearer #{@token}"
-           })
-
-      json_response = parse_graphql_errors(response.body)
-      expected_err_mssg = 'Record not found.'
-      assert_equal expected_err_mssg, json_response[0]['message']
+      assert_equal json_response['addCategoryGroup']['title'], 'category group'
     end
   end
 end

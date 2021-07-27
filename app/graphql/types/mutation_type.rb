@@ -8,5 +8,10 @@ module Types
     field :add_wallet, mutation: Mutations::AddWallet
     field :sign_in_with_email, mutation: Mutations::SignInWithEmail
     field :sign_up_with_email, mutation: Mutations::SignUpWithEmail
+    field :update_profile, mutation: Mutations::UpdateProfile
+    field :addCategoryGroup, mutation: Mutations::AddCategoryGroup
+    field :addCategory, mutation: Mutations::AddCategory
+    field :editCategoryGroup, mutation: Mutations::EditCategoryGroup
+    field :deleteCategoryGroup, mutation: Mutations::DeleteCategoryGroup
   end
 end

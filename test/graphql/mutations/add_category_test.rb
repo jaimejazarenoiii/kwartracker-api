@@ -3,7 +3,7 @@
 require 'test_helper'
 
 module Mutations
-  class DeleteCategoryMutationTest < ActionDispatch::IntegrationTest
+  class AddCategoryMutationTest < ActionDispatch::IntegrationTest
     setup do
       password = 'Password123!'
       expected_email = 'info@kwartracker.com'
@@ -11,42 +11,32 @@ module Mutations
                     email: expected_email,
                     password: password,
                     password_confirmation: password)
+      @category_group = build(:category_group)
+      @category_group.user_id = user.id
+      @category_group.save
+
       post('/graphql',
            params: {
              query: sign_in_with_email_mutation,
              variables: sign_in_with_email_mutation_variables({ email: user.email,
                                                                 password: password })
            })
-      @category = user.categories.first
+
       json_response = parse_graphql_response(response.body)
       @token = json_response.dig('signInWithEmail', 'token')
     end
 
-    test 'valid delete category' do
+    test 'valid add category' do
       post('/graphql',
            params: {
-             query: delete_category_mutation,
-             variables: { id: @category.id }
+             query: add_category_mutation,
+             variables: add_category_mutation_variables({ title: 'category',
+                                                          categoryGroupId: @category_group.id })
            }, headers: {
              'Authorization': "Bearer #{@token}"
            })
-
       json_response = parse_graphql_response(response.body)
-      assert_equal json_response['deleteCategory'].count, 19
-    end
-
-    test 'invalid category id' do
-      post('/graphql',
-           params: {
-             query: delete_category_mutation,
-             variables: { id: 100 }
-           }, headers: {
-             'Authorization': "Bearer #{@token}"
-           })
-
-      json_response = parse_graphql_errors(response.body)
-      expected_err_mssg = 'Record not found.'
-      assert_equal expected_err_mssg, json_response[0]['message']
+      assert_equal json_response['addCategory']['title'], 'category'
     end
   end
 end
