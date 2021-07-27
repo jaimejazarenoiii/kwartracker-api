@@ -146,6 +146,118 @@ module GraphQL
         }
       )
     end
+
+    def update_profile_mutation(_input = {})
+      %(
+        mutation UpdateProfile(
+          $firstName: String!,
+          $middleName: String,
+          $lastName: String!,
+          $gender: Int!,
+          $age: Int!
+        ) {
+          updateProfile(input: {
+            firstName: $firstName,
+            middleName: $middleName,
+            lastName: $lastName,
+            gender: $gender,
+            age: $age
+          }) {
+            id
+            firstName
+            middleName
+            lastName
+            email
+            age
+            gender
+          }
+        }
+      )
+    end
+
+    def add_category_group_mutation(_input = {})
+      %(
+        mutation AddCategoryGroup(
+          $title: String!
+        ) {
+          addCategoryGroup(input: {
+            title: $title
+          }) {
+            title
+            categories {
+              id
+              title
+            }
+          }
+        }
+      )
+    end
+
+    def add_category_mutation(_input = {})
+      %(
+        mutation AddCategory(
+          $title: String!,
+          $categoryGroupId: ID!
+        ) {
+          addCategory(input: {
+            title: $title,
+            categoryGroupId: $categoryGroupId
+          }) {
+            id
+            title
+            transactions {
+              title
+              amount
+              datetime
+            }
+            budgets {
+              id
+              amount
+              updatedAt
+              createdAt
+            }
+          }
+        }
+      )
+    end
+
+    def delete_category_group_mutation(_input = {})
+      %(
+        mutation DeleteCategoryGroup(
+          $id: ID!
+        ) {
+          deleteCategoryGroup(input: {
+            id: $id
+          }) {
+            title
+            categories {
+              id
+              title
+            }
+          }
+        }
+      )
+    end
+
+    def edit_category_group_mutation(_input = {})
+      %(
+        mutation EditCategoryGroup(
+          $id: ID!,
+          $title: String!
+        ) {
+          editCategoryGroup(input: {
+            id: $id,
+            title: $title
+          }) {
+            title
+            categories {
+              id
+              title
+            }
+          }
+        }
+      )
+    end
   end
 end
 # rubocop:enable Metrics/MethodLength, Metrics/ModuleLength
