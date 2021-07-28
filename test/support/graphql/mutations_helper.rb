@@ -282,6 +282,35 @@ module GraphQL
         }
       )
     end
+
+    def edit_category_mutation(_input = {})
+      %(
+        mutation EditCategory(
+          $id: ID!,
+          $title: String!,
+          $categoryGroupId: ID!
+        ) {
+          editCategory(input: {
+            id: $id,
+            title: $title,
+            categoryGroupId: $categoryGroupId
+          }) {
+            title
+            transactions {
+              title
+              amount
+              datetime
+            }
+            budgets {
+              id
+              amount
+              updatedAt
+              createdAt
+            }
+          }
+        }
+      )
+    end
   end
 end
 # rubocop:enable Metrics/MethodLength, Metrics/ModuleLength
