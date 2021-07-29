@@ -13,5 +13,6 @@ module Types
     field :addCategory, mutation: Mutations::AddCategory
     field :editCategoryGroup, mutation: Mutations::EditCategoryGroup
     field :deleteCategoryGroup, mutation: Mutations::DeleteCategoryGroup
+    field :editCategory, mutation: Mutations::EditCategory
   end
 end
