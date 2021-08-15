@@ -75,35 +75,35 @@ class User < ApplicationRecord
 
   def create_health_group
     group = category_groups.new
-    group.title = CategoryGroup::DEFAULT_GROUPS[0].to_s.split('_').map(&:capitalize)
+    group.title = CategoryGroup::DEFAULT_GROUPS[0].to_s.split('_').map(&:capitalize).join(' ')
     group.save
     create_health_categories(group: group)
   end
 
   def create_bills_group
     group = category_groups.new
-    group.title = CategoryGroup::DEFAULT_GROUPS[1].to_s.split('_').map(&:capitalize)
+    group.title = CategoryGroup::DEFAULT_GROUPS[1].to_s.split('_').map(&:capitalize).join(' ')
     group.save
     create_bills_categories(group: group)
   end
 
   def create_home_group
     group = category_groups.new
-    group.title = CategoryGroup::DEFAULT_GROUPS[2].to_s.split('_').map(&:capitalize)
+    group.title = CategoryGroup::DEFAULT_GROUPS[2].to_s.split('_').map(&:capitalize).join(' ')
     group.save
     create_home_categories(group: group)
   end
 
   def create_gifts_group
     group = category_groups.new
-    group.title = CategoryGroup::DEFAULT_GROUPS[3].to_s.split('_').map(&:capitalize)
+    group.title = CategoryGroup::DEFAULT_GROUPS[3].to_s.split('_').map(&:capitalize).join(' ')
     group.save
     create_gifts_categories(group: group)
   end
 
   def create_fun_group
     group = category_groups.new
-    group.title = CategoryGroup::DEFAULT_GROUPS[4].to_s.split('_').map(&:capitalize)
+    group.title = CategoryGroup::DEFAULT_GROUPS[4].to_s.split('_').map(&:capitalize).join(' ')
     group.save
     create_fun_categories(group: group)
   end
@@ -120,7 +120,7 @@ class User < ApplicationRecord
   def create_health_categories(group:)
     Category::DEFAULT_HEALTH_CATEGORIES.each do |cat|
       category = group.categories.new
-      category.title = cat.to_s.split('_').map(&:capitalize)
+      category.title = cat.to_s.split('_').map(&:capitalize).join(' ')
       category.save
     end
   end
@@ -128,7 +128,7 @@ class User < ApplicationRecord
   def create_bills_categories(group:)
     Category::DEFAULT_BILLS_CATEGORIES.each do |cat|
       category = group.categories.new
-      category.title = cat.to_s.split('_').map(&:capitalize)
+      category.title = cat.to_s.split('_').map(&:capitalize).join(' ')
       category.save
     end
   end
@@ -136,7 +136,7 @@ class User < ApplicationRecord
   def create_home_categories(group:)
     Category::DEFAULT_HOME_CATEGORIES.each do |cat|
       category = group.categories.new
-      category.title = cat.to_s.split('_').map(&:capitalize)
+      category.title = cat.to_s.split('_').map(&:capitalize).join(' ')
       category.save
     end
   end
@@ -144,7 +144,7 @@ class User < ApplicationRecord
   def create_gifts_categories(group:)
     Category::DEFAULT_GIFTS_CATEGORIES.each do |cat|
       category = group.categories.new
-      category.title = cat.to_s.split('_').map(&:capitalize)
+      category.title = cat.to_s.split('_').map(&:capitalize).join(' ')
       category.save
     end
   end
@@ -152,7 +152,7 @@ class User < ApplicationRecord
   def create_fun_categories(group:)
     Category::DEFAULT_FUN_CATEGORIES.each do |cat|
       category = group.categories.new
-      category.title = cat.to_s.split('_').map(&:capitalize)
+      category.title = cat.to_s.split('_').map(&:capitalize).join(' ')
       category.save
     end
   end
